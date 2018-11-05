@@ -229,7 +229,11 @@ function getUrlParams() {
   let urlParamsStr = document.location.search;
 
   if(!urlParamsStr) {
-    return {};
+    // Without params show all tabs
+    return {
+      html: true,
+      css: true
+    };
   }
 
   const urlParams = urlParamsStr
