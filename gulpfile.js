@@ -19,6 +19,6 @@ gulp.task('serve', function() {
 gulp.task('ghPages', function() {
   console.log(colors.rainbow('⬤  Publish to Github Pages... ⬤'));
 
-  return gulp.src('build/**/*')
+  return gulp.src('*')
     .pipe(ghPages());
 });
