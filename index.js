@@ -38,37 +38,23 @@ const parseSnippets = () => {
         console.log(err);
       });
 
-    // console.log(articlesDirs);
-
-
     const articleDirsPromises = articlesDirs.map(async (dir) => {
       const resultPromise = createArticleDirPromise({snippetsDirPath, dir});
       return resultPromise;
     });
 
-    console.log('articleDirsPromises', articleDirsPromises);
-    // c
-
-    // return;
-
     await Promise.all(articleDirsPromises)
       .then(result => {
-        console.log('\n\n 3 -- articleDirsPromises result:');
-        console.log(result);
-
         return fillIndex(result);
       })
       .then(fillIndexResult => {
-        console.log('fillIndexResult', fillIndexResult);
+        // console.log('fillIndexResult', fillIndexResult);
       })
       .catch(err => {
         console.log(err);
       });
 
-    // console.log(demoDirsPromises);
-
-    console.log('\n5 All files was written');
-    console.log(filesUrls);
+    console.log('\nAll files was written');
   });
 };
 
@@ -86,6 +72,7 @@ const fillIndex = dirs => {
     let filesItems = item.files.map(file => {
       return `<li><a href="${file}">${file}</a></li>`;
     });
+
     const content = `
     <dt>${item.dir}</dt>
     <dd>
@@ -220,8 +207,6 @@ const handleFiles = async ({files, articleDirPath, readyFolderPath}) => {
     return newPromise;
   }); // End map
 
-  // console.log('filesPromises', filesPromises);
-
   return filesPromises;
 };
 
@@ -248,7 +233,6 @@ const createWriteFilePromise = ({
         reject(err);
       }
 
-      // return data;
       const htmlWithCSS = htmlData.replace('</head>', headWithCSS);
 
       await fs.writeFile(readyHtmlPath, htmlWithCSS, (err) => {
@@ -307,5 +291,3 @@ const createFolder = async (path) => {
 // ------------------------------
 
 parseSnippets();
-
-// console.log('hello');
