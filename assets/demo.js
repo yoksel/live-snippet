@@ -65,8 +65,7 @@ Demo.prototype.addIframe = function() {
 // ------------------------------
 
 Demo.prototype.fillIframe = function() {
-  const prefixFreeLink = '<script src="http://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>';
-  this.iframeDoc.head.innerHTML += prefixFreeLink;
+  const prefixFreeLink = '<script src="//cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>';
 
   const iframeStyles = document.createElement('style');
   iframeStyles.innerHTML = this.elems.css.content;
@@ -254,7 +253,6 @@ function cleanCSS(css) {
 function cleanHTML(html) {
   const cleanedHTML = html
     .replace(/<script id="__bs_script__">[\S\s]*<\/script>/gm, '')
-    .replace(/<style[\S\s]*data-href="chrome-extension[\S\s]*<\/style>/gm,'')
     .replace(/<link href="chrome-extension[\S\s]*rel="stylesheet">/gm,'')
     .trim();
 
