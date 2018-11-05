@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js && gulp serve"
+    "start": "node index.js && gulp serve",
+    "publish": "gulp publish"
   },
   "author": "",
   "license": "ISC",
@@ -16,7 +17,8 @@
     "gulp-copy": "^4.0.1",
     "gulp-gh-pages": "^0.5.4",
     "gulp-rename": "^1.4.0",
-    "gulp-replace": "^1.0.0"
+    "gulp-replace": "^1.0.0",
+    "gulp-sequence": "^1.0.0"
   },
   "dependencies": {},
   "description": ""

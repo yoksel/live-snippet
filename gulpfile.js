@@ -7,6 +7,7 @@ var copy = require('gulp-copy');
 var del = require('del');
 var replace = require('gulp-replace');
 var rename = require('gulp-rename');
+var gulpSequence = require('gulp-sequence')
 
 // CLEAN BUILD
 gulp.task('clean', function(){
@@ -15,6 +16,7 @@ gulp.task('clean', function(){
   });
 });
 
+// CREATE INDEX PAGE FILE
 gulp.task('make-index', function(){
   console.log(colors.yellow('⬤  Make index page... ⬤'));
 
@@ -44,9 +46,13 @@ gulp.task('serve', function() {
 });
 
 // PUBLISH TO GITHUB PAGES
-gulp.task('ghPages', ['clean','copy', 'make-index'],function() {
+gulp.task('ghPages', function() {
   console.log(colors.rainbow('⬤  Publish to Github Pages... ⬤'));
 
   return gulp.src('build/**/*')
     .pipe(ghPages());
+});
+
+gulp.task('publish', ['clean'], function (done) {
+  gulpSequence(['copy', 'make-index'], 'ghPages')(done);
 });
