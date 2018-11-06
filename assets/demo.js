@@ -101,7 +101,7 @@ Demo.prototype.addActions = function() {
 
 Demo.prototype.createSaveLink = function() {
   const encoded = btoa(this.iframeDoc.firstChild.outerHTML);
-  const href = `data:text/html;base64,${encoded}`;
+  const href = 'data:text/html;base64,' + encoded;
 
   const link = this.addLink(
     href,
@@ -119,7 +119,7 @@ Demo.prototype.createSaveLink = function() {
 Demo.prototype.updateSaveLink = function() {
   const pageCode = cleanHTML(this.iframeDoc.firstChild.outerHTML);
   const encoded = btoa(pageCode);
-  const href = `data:text/html;base64,${encoded}`;
+  const href = 'data:text/html;base64,' + encoded;
   this.saveLink.href = href;
 }
 
@@ -148,7 +148,7 @@ Demo.prototype.addButtons = function() {
   this.textareasKeysList.forEach(function(key) {
     const button = document.createElement('button');
     button.classList.add('control');
-    button.classList.add(`control--${key}`);
+    button.classList.add('control--' + key);
 
     if(that.params[key]) {
       button.classList.add('control--pressed');
@@ -156,7 +156,7 @@ Demo.prototype.addButtons = function() {
 
     button.innerHTML = key;
     that.layout.controls.appendChild(button);
-    const column = document.querySelector(`.column--${key}`);
+    const column = document.querySelector('.column--' + key);
 
     button.addEventListener('click', function() {
       column.classList.toggle('column--collapsed');
@@ -177,7 +177,7 @@ Demo.prototype.addButtons = function() {
 Demo.prototype.addLink = function(url, key, text) {
   const link = document.createElement('a');
   link.classList.add('link');
-  link.classList.add(`link--${key}`);
+  link.classList.add('link--' + key);
   link.href = url;
   link.innerHTML = text;
 
@@ -194,7 +194,7 @@ Demo.prototype.addTextareas = function() {
 
     const textarea = document.createElement('textarea');
     textarea.classList.add('textarea');
-    textarea.classList.add(`textarea--${key}`);
+    textarea.classList.add('textarea--' + key);
     textarea.innerHTML = that.elems[key].content;
 
     column.appendChild(textarea);
@@ -213,7 +213,7 @@ Demo.prototype.addTextareas = function() {
 Demo.prototype.createColumn = function (key) {
   const column = document.createElement('div');
   column.classList.add('column');
-  column.classList.add(`column--${key}`);
+  column.classList.add('.column--' + key);
 
   if(key !== 'iframe' && !this.params[key]) {
     column.classList.add('column--collapsed');
