@@ -213,7 +213,7 @@ Demo.prototype.addTextareas = function() {
 Demo.prototype.createColumn = function (key) {
   const column = document.createElement('div');
   column.classList.add('column');
-  column.classList.add('.column--' + key);
+  column.classList.add('column--' + key);
 
   if(key !== 'iframe' && !this.params[key]) {
     column.classList.add('column--collapsed');
