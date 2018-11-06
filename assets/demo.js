@@ -261,7 +261,7 @@ function cleanHTML(html) {
 
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
   const demo = new Demo();
   demo.init();
 });
