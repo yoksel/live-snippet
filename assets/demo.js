@@ -47,7 +47,7 @@ Demo.prototype.addIframe = function() {
   waitForIframe();
 
   function waitForIframe() {
-    setTimeout(() => {
+    setTimeout(function() {
       iframeDoc = iframe.contentWindow.document;
 
       if(iframeDoc.readyState !== 'complete') {
