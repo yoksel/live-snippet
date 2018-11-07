@@ -8,13 +8,13 @@ const filesUrls = [];
 
 const promisify = (func, path) => {
   return new Promise(async (resolve, reject) => {
-      func(path, async (err, data) => {
-        if(err) {
-          reject(err);
-        }
-        resolve(data);
-      });
+    func(path, async (err, data) => {
+      if(err) {
+        reject(err);
+      }
+      resolve(data);
     });
+  });
 }
 
 const parseSnippets = () => {
@@ -39,6 +39,10 @@ const parseSnippets = () => {
       });
 
     const articleDirsPromises = articlesDirs.map(async (dir) => {
+      if(dir === '.DS_Store') {
+        return;
+      }
+
       const resultPromise = createArticleDirPromise({snippetsDirPath, dir});
       return resultPromise;
     });
@@ -65,7 +69,7 @@ const fillIndex = dirs => {
   const indexReadyPath = 'index.html';
 
   const listMarkup = dirs.map(item => {
-    if(!item.files) {
+    if(!item || !item.files) {
       return '';
     }
 
@@ -74,7 +78,7 @@ const fillIndex = dirs => {
     });
 
     const content = `
-    <dt>${item.dir}</dt>
+    <dt><a href="http://yoksel.github.io/${item.dir}">${item.dir}</a></dt>
     <dd>
       <ul>
         ${filesItems.join('\n')}
